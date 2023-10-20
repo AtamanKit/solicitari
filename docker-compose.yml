@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  web:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src/:/app/src/
+      - ./frontend/public/:/app/public/
+    env_file:
+      - ./frontend/.env.dev.web
+  
+  api:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend/gen_app/:/app/gen_app/
+      - ./backend/sol_proj/:/app/sol_proj/
+      - ./backend/accounts/:/app/accounts/
+      - ./backend/chat/:/app/chat/
+      - ./backend/push/:/app/push/
+      - ./backend/migrations/:/app/migrations/
+    env_file:
+      - ./backend/.env.dev.api
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./backend/.env.db
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+
+volumes:
+  postgres_data:

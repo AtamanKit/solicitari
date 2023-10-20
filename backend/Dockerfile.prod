@@ -1,0 +1,22 @@
+FROM python:3.10-alpine3.15
+
+WORKDIR /home/backend/
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install --upgrade pip
+
+COPY ./requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY ./ ./
+
+RUN mkdir /var/log/gunicorn/
+
+RUN addgroup backend && adduser -S -G backend backend
+RUN chown -R backend:backend /home/backend/
+
+RUN touch /var/log/gunicorn/dev.log && chown backend:backend /var/log/gunicorn/dev.log
+
+USER backend

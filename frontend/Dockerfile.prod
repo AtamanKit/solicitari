@@ -1,0 +1,18 @@
+# Stage 1: Build stage
+FROM node:18-alpine3.15 as builder
+
+WORKDIR /home/src/app/
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+# Stage 2: Production
+FROM node:18-alpine3.15
+
+WORKDIR /home/frontend/
+
+COPY --from=builder /home/src/app/build/ /home/frontend/

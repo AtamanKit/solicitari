@@ -1,0 +1,201 @@
+.icon-size {
+    font-size: 1.5em;
+    margin: 0  0 .2em 0;
+}
+
+.form {
+    background-color: white;
+    padding: 2em 2em 2em 2em;
+    border-radius: .5em;
+}
+
+.form-detail {
+    background-color: white;
+    padding: 2em 2em 2em 2em;
+    border-radius: .5em;
+    width: 80%;
+    margin: 0 0 2% 0;
+}
+
+.button {
+    margin: 1em 10em 0 .1em;
+    width: 100%;
+}
+
+.button-google {
+    margin: 1em 10em 0 .1em;
+    width: 100%;
+    background-color: white;
+    color:darkslategrey;
+    border: none;
+    box-shadow: 3px 2px 10px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+}
+
+.button-facebook {
+    margin: 1em 10em 0 4.6em;
+    width: 70%;
+    background-color: rgb(85, 98, 182);
+    color: white;
+    height: 2.2rem;
+    border: none;
+    box-shadow: 3px 2px 10px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+}
+
+.button-facebook:hover {
+    background-color:blue;
+}
+
+.button-facebook:active {
+    background-color:blue;
+    /* height: 2.4rem; */
+    /* border-style:outset; */
+    /* border-width: 5px; */
+    /* border-color:rgba(150, 177, 194, 0.2); */
+}
+
+.button-search {
+    margin: 1em 10em 0 .5em;
+    width: 97%;
+}
+
+.button-send {
+    color: gray;
+    width: 2em;
+    height: 2em;
+    margin: 0 0 0 .5em
+}
+
+.button-send:hover {
+    cursor:pointer;
+    color:cornflowerblue;
+}
+
+h1 {
+    color: rgb(240, 240, 240);
+}
+
+.table-sol {
+    background-color: rgb(255, 255, 255);
+    margin-top: 5em;
+    width: 100%;
+}
+
+.table-sol-sm {
+    background-color: rgb(255, 255, 255);
+    margin-top: 9em;
+    width: 100%;
+}
+
+.th-sol {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4em;
+    background-color: rgba(180, 180, 180, 0.5);
+    padding-left: .4em;
+}
+
+.th-sol-sm {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 9em;
+    background-color: rgba(180, 180, 180, 0.5);
+    padding-left: .4em;
+}
+
+.btn-nav {
+    background-color:rgb(248,249,250);
+    color: gray;
+    border-color: rgb(248, 249, 250);
+    padding: .2em .2em .2em .2em;
+    margin: .3em .3em .3em .3em;
+}
+
+.btn-nav:hover {
+    background-color: rgb(220, 220, 220);
+    border-color: white;
+    color: gray;
+}
+
+.btn-context {
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    color: gray;
+    border-color: white;
+    /* padding: .2em .2em .2em .2em; */
+    /* margin: .1em .1em .1em .1em; */
+}
+
+.btn-context:hover {
+    background-color: rgb(220, 220, 220);
+    border-color: white;
+    color: gray;
+    /* width: 100%; */
+}
+
+.link-context {
+    color: gray;
+    font: .8em arial;
+}
+
+.link-context:hover {
+    color: white;
+    background-color: gray;
+}
+
+.alegeti {
+    color: gray;
+    font-weight: bold;
+}
+
+.contextMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: auto;
+    width: fit-content;
+    border:rgb(200, 200, 200) 1.5px double;
+}
+
+.optionList {
+    padding: 12px;
+    min-width: 107px;
+}
+
+.optionListItem {
+    padding: .5em .5em .5em 1.5em;
+    list-style-type: none;
+    font-size: medium;
+}
+
+.optionListItem:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+}
+
+.contextMenuListWrapper {
+    background-color:aliceblue;
+}
+
+.separator {
+    border-bottom: rgb(200, 200, 200) .1px double;
+    margin: 0 .2em 0 .5em;
+}
+
+/* .contextMenuListItem {
+    padding: .5em .5em .5em 1.5em;
+}
+
+.contextMenuListItem:hover {
+    background-color: gray;
+    color: white;
+} */
+
+.backdrop-offcanvas {
+    background-color: rgba(0, 0, 0, 0);
+}

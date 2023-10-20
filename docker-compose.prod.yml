@@ -1,0 +1,82 @@
+version: "3.3"
+services:
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    # restart: always
+    # ports:
+    #   - 3000:3000
+    env_file:
+      - ./frontend/.env.prod.web
+    volumes:
+      - react_build:/home/frontend/
+  
+  api:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    command: gunicorn -c config/gunicorn/dev.py
+    expose:
+      - 8000
+    volumes:
+      - ./backend/static/:/home/backend/static/
+      - ./backend/media/:/home/backend/media/
+    env_file:
+      - ./backend/.env.prod.api
+    depends_on:
+      - db
+
+  daphne:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    command: daphne sol_proj.asgi:application --bind 0.0.0.0 --port 8001
+    ports:
+      - 8001:8001
+    depends_on:
+      - api
+      - redis    
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./backend/.env.db
+
+  redis:
+    image: redis:alpine
+    restart: always
+    command: redis-server --requirepass Red1234is --masterauth Red1234is --appendonly yes
+    ports:
+      - 6379:6379
+
+  nginx:
+    build: ./nginx
+    restart: always
+    volumes:
+      - react_build:/home/frontend/
+      - ./backend/static/:/home/backend/static/
+      - ./backend/media/:/home/backend/media/
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/nginx/ssl/
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - daphne
+      - web
+
+        #  certbot:
+        #    image: certbot/certbot:latest
+        #    volumes:
+        #      - ./certbot/www/:/var/www/certbot/
+        #      - ./certbot/conf/:/etc/letsencrypt/
+
+volumes:
+  postgres_data:
+  react_build:
