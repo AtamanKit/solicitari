@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+template:
+  metadata:
+    labels:
+      app: web
+spec:
+  containers:
+  - name: web
+    image: solicitari-web:01
+    # ports:
+    # - containerPors: 80
+    envFrom:
+    - configMapRef:
+        name: web-config

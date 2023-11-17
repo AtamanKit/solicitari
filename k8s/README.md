@@ -4,7 +4,7 @@
     * web-deployment.yaml
     * api-deployment.yaml
     * daphne-deployment.yaml
-    * db-deployment.yamk
+    * db-deployment.yaml
     * redis-deployment.yaml
     * nginx-deployment.yaml
 
