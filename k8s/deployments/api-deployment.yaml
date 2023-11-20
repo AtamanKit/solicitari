@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-deployment
-specs:
+spec:
   replicas: 2
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ specs:
     spec:
       containers:
       - name: api
-        image: solicitari-api:01
+        image: solicitari-api:1.0
         ports:
         - containerPort: 8000
         envFrom:

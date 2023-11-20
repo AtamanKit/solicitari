@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: solicitari-nginx:1.0
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+        - name: react-build
+          mountPath: /home/frontend/
+        - name: backend-static
+          mountPath: /home/backend/static
+        - name: backend-media
+          mountPath: /home/backend/media/
+        - name: certbot-www
+          mountPath: /var/www/certbot/
+        - name: certbot-conf
+          mountPath: /etc/nginx/ssl/
+      volumes:
+      - name: react-build
+        persistentVolumeClaim:
+          claimName: react-build-pvc
+      - name: backend-static
+        persistentVolumeClaim:
+          claimName: backend-static-pvc
+      - name: backend-media
+        persistentVolumeClaim:
+          claimName: backend-media-pvc
+      - name: certbot-www
+        persistentVolumeClaim:
+          claimName: cerbot-www-pvc
+      - name: certbot-conf
+        persistentVolumeClaim:
+          claimName: cerbot-conf-pvc

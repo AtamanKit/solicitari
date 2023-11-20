@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        command: ["redis-server"]
+        args: ["--requirepass", "Red1234is", "--masterauth", "Red1234is", "--appendonly", "yes"]
+        ports:
+        - containerPort: 6379

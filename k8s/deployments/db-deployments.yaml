@@ -21,8 +21,7 @@ spec:
         envForm:
         - configMapRef:
             name: db-config
-
-volumes:
-- name: postgres-data
-  persistentVolumeClaim:
-    claimName: postgres-pvc
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc

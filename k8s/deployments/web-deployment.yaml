@@ -11,12 +11,12 @@ template:
   metadata:
     labels:
       app: web
-spec:
-  containers:
-  - name: web
-    image: solicitari-web:01
-    # ports:
-    # - containerPors: 80
-    envFrom:
-    - configMapRef:
-        name: web-config
+  spec:
+    containers:
+    - name: web
+      image: solicitari-web:1.0
+      # ports:
+      # - containerPors: 80
+      envFrom:
+      - configMapRef:
+          name: web-config

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetProtocol: 80
+    - name: https
+      protocol: TCP
+      port: 433
+      targetProtocol: 433
+  type: LoadBalancer

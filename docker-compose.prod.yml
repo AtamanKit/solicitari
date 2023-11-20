@@ -45,8 +45,8 @@ services:
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./backend/.env.db
+    # env_file:
+    #   - ./backend/.env.db
 
   redis:
     image: redis:alpine

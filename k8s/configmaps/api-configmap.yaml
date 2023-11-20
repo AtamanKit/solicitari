@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+data:
+  SQL_ENGINE: "django.db.backends.postgresql"
+  SQL_DATABASE: "postgres"
+  SQL_USER: "postgres"
+  SQL_HOST: "db"
+  SQL_PORT: "5432"
