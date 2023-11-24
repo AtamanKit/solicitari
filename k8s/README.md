@@ -61,28 +61,34 @@ docker build -t solicitari-nginx:1.0 ./nginx
 # Directories and Files Structure
 
 ```bash
-k8s/
-│
-├── deployments/
-│   ├── web-deployment.yaml
-│   ├── api-deployment.yaml
-│   ├── daphne-deployment.yaml
-│   ├── db-deployment.yaml
-│   ├── nginx-deployment.yaml
-│   └── redis-deployment.yaml
-│
-├── services/
-│   ├── web-service.yaml
-│   ├── api-service.yaml
-│   ├── daphne-service.yaml
-│   ├── api-service.yaml
-│   ├── db-service.yaml
-│   └── redis-service.yaml
-│
-├── configmaps/
-│   ├── web-configmap.yaml
-│   └── api-configmap.yaml
-│
-└── secrets/
-    └── api-secret.yaml
+k8s
+├── configmaps
+│   ├── api-configmap.yaml
+│   └── web-configmap.yaml
+├── deployments
+│   ├── api-deployment.yaml
+│   ├── daphne-deployment.yaml
+│   ├── db-deployments.yaml
+│   ├── nginx-deployment.yaml
+│   ├── redis-deployment.yaml
+│   └── web-deployment.yaml
+├── pvc
+│   ├── backend-media-pvc.yaml
+│   ├── backend-static-pvc.yaml
+│   ├── certbot-conf-pvc.yaml
+│   ├── certbot-www-pvc.yaml
+│   ├── postgres-pvc.yaml
+│   └── react-build-pvc.yaml
+├── README.md
+├── secrets
+│   └── api-secret.yaml
+├── services
+│   ├── api-service.yaml
+│   ├── daphne-service.yaml
+│   ├── db-service.yaml
+│   ├── nginx-service.yaml
+│   ├── redis-service.yaml
+│   └── web-service.yaml
+└── utilities
+    └── temp-pod.yaml
 ```

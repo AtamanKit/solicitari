@@ -10,6 +10,9 @@ spec:
   containers:
     - name: ubuntu
       image: ubuntu
+      command:
+        - "sleep"
+        - "infinity"
       volumeMounts:
         - mountPath: "/mnt"
           name: postgres-pvc
