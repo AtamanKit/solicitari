@@ -18,10 +18,18 @@ spec:
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql/data/
-        envForm:
+        envFrom:
         - configMapRef:
             name: db-config
+        env:
+        - name: postgres-password
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: POSTGRES_PASSWORD
       volumes:
       - name: postgres-data
         persistentVolumeClaim:
           claimName: postgres-pvc
+
+

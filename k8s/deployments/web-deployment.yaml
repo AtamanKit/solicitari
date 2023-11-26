@@ -25,4 +25,3 @@ spec:
       - name: react-build-volume
         persistentVolumeClaim:
           claimName: react-build-pvc
-
