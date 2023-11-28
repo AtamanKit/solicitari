@@ -8,7 +8,7 @@ services:
       - ./frontend/src/:/app/src/
       - ./frontend/public/:/app/public/
     env_file:
-      - ./frontend/.env.dev.web
+      - ./frontend/.env/.env.dev.web
   
   api:
     build: ./backend
@@ -23,7 +23,7 @@ services:
       - ./backend/push/:/app/push/
       - ./backend/migrations/:/app/migrations/
     env_file:
-      - ./backend/.env.dev.api
+      - ./backend/.env/.env.dev.api
     depends_on:
       - db
       - redis
@@ -33,7 +33,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./backend/.env.db
+      - ./backend/.env/.env.db
 
   redis:
     image: redis:alpine

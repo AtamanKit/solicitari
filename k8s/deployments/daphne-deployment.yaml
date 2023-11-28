@@ -20,5 +20,6 @@ spec:
         command: ["daphne"]
         args: ["-b", "0.0.0.0", "-p", "8001", "sol_proj.asgi:application"]
         envFrom:
-        - configMapRef:
-            name: daphne-config
+        - secretRef:
+            name: daphne-secret
+  

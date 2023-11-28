@@ -8,7 +8,7 @@ services:
     # ports:
     #   - 3000:3000
     env_file:
-      - ./frontend/.env.prod.web
+      - ./frontend/.env/.env.prod.web
     volumes:
       - react_build:/home/frontend/
   
@@ -24,7 +24,7 @@ services:
       - ./backend/static/:/home/backend/static/
       - ./backend/media/:/home/backend/media/
     env_file:
-      - ./backend/.env.prod.api
+      - ./backend/.env/.env.prod.api
     depends_on:
       - db
 
@@ -35,6 +35,8 @@ services:
     restart: always
     command: daphne sol_proj.asgi:application --bind 0.0.0.0 --port 8001
     ports:
+    env_file:
+      - ./backend/.env/.env.prod.daphne
       - 8001:8001
     depends_on:
       - api
@@ -46,12 +48,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./backend/.env.db
+      - ./backend/.env/.env.db
 
   redis:
     image: redis:alpine
     restart: always
-    command: redis-server --requirepass Red1234is --masterauth Red1234is --appendonly yes
+    command: redis-server --requirepass ${REDIS_PASSWORD} --masterauth ${REDIS_PASSWORD} --appendonly yes
+    env_file:
+      - ./backend/.env/.env.prod.redis
     ports:
       - 6379:6379
 

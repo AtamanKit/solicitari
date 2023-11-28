@@ -16,6 +16,12 @@ spec:
       - name: redis
         image: redis:alpine
         command: ["redis-server"]
-        args: ["--requirepass", "Red1234is", "--masterauth", "Red1234is", "--appendonly", "yes"]
+        args: ["--requirepass", "$(REDIS_PASSWORD)", "--masterauth", "$(REDIS_PASSWORD)", "--appendonly", "yes"]
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-secret
+              key: REDIS_PASSWORD
         ports:
         - containerPort: 6379

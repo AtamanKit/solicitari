@@ -22,4 +22,3 @@ spec:
             name: api-config
         - secretRef:
             name: api-secret
-
