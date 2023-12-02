@@ -25,10 +25,6 @@ spec:
           mountPath: /home/backend/static
         - name: backend-media
           mountPath: /home/backend/media/
-        - name: certbot-www
-          mountPath: /var/www/certbot/
-        - name: certbot-conf
-          mountPath: /etc/nginx/ssl/
       volumes:
       - name: react-build
         persistentVolumeClaim:
@@ -39,9 +35,3 @@ spec:
       - name: backend-media
         persistentVolumeClaim:
           claimName: backend-media-pvc
-      - name: certbot-www
-        persistentVolumeClaim:
-          claimName: cerbot-www-pvc
-      - name: certbot-conf
-        persistentVolumeClaim:
-          claimName: cerbot-conf-pvc
