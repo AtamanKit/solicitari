@@ -17,6 +17,7 @@ spec:
         image: solicitari-api:1.0
         ports:
         - containerPort: 8000
+        command: ["gunicorn", "-c", "config/gunicorn/dev.py"]
         envFrom:
         - configMapRef:
             name: api-config

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: daphne
-        image: solicitari-daphne:1.0
+        image: solicitari-api:1.0
         ports:
         - containerPort: 8001
         command: ["daphne"]

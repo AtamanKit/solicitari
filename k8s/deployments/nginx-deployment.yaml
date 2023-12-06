@@ -17,14 +17,14 @@ spec:
         image: solicitari-nginx:1.0
         ports:
         - containerPort: 80
-        - containerPort: 443
+        # - containerPort: 443
         volumeMounts:
         - name: react-build
-          mountPath: /home/frontend/
+          mountPath: /var/www/html/build/
         - name: backend-static
-          mountPath: /home/backend/static
+          mountPath: /var/www/html/static/
         - name: backend-media
-          mountPath: /home/backend/media/
+          mountPath: /var/www/html/media/
       volumes:
       - name: react-build
         persistentVolumeClaim:

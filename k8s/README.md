@@ -1,40 +1,46 @@
 # Kubernetis Organisation
 
 * ### 1. Deployment Files:
-    * web-deployment.yaml
     * api-deployment.yaml
     * daphne-deployment.yaml
     * db-deployment.yaml
-    * redis-deployment.yaml
     * nginx-deployment.yaml
+    * redis-deployment.yaml
+    * web-deployment.yaml
 
 * ### 2. Service Files:
-    * web-service.yaml
     * api-service.yaml
     * daphne-service.yaml
     * db-service.yaml
-    * redis-service.yaml
     * nginx-service.yaml
+    * redis-service.yaml
 
 * ### 3. ConfigMaps and Secrets:
     * **ConfigMaps**
-        * web-configmap.yaml
         * api-configmap.yaml
-        * daphne-configmap.yaml
-        * nginx-configmap.yaml
+        * db-configmap.yaml
+        * web-configmap.yaml
     * **Secrets**
+        * api-secrets.yaml
+        * daphne-secret.yaml
         * db-secrets.yaml
         * redis-secrets.yaml
-        * api-secrets.yaml
-        * web-secrets.yaml
-        * nginx-secrets.yaml
 
 * ### 4. Persistent Volumes and Claims:
-    * db-persistentvolumeclaim.yaml
-    * redis-persistentvolumeclaim.yaml
+    * backend-media-pvc.yaml
+    * backend-static-pvc.yaml
+    * postgres-pvc.yaml
+    * react-build-pvc.yaml
 
-* ### Ingress Configuration
-    * nginx-ingress.yaml
+* ### 5. Incress
+    * **cert-manager**
+        * certificate.prod.yaml
+        * certificate.staging.yaml
+        * letsencrypt-issuer.prod.yaml
+        * letsencrypt-issuer.staging.yaml
+    * **ingress-service**
+        * ingress.dev.yaml
+        * ingress.prod.yaml
 &nbsp;
 <br/>
 &nbsp;
@@ -45,17 +51,19 @@
 We will need to create docker images for using them in the Pods Containers in the Deployments files. All the commands will be run from the `solicitari/` directory
 
 ```bash
-# `web` Deployment
-docker build -f Dockerfile.prod -t solicitari-web:1.0 ./frontend
+# The action will be triggered from `root/` directory (`solicitari/`)
 
 # `api` Deployment
-docker build -f Dockerfile.prod -t solicitari-api:1.0 ./backend
+docker build -f .backend/Dockerfile.prod -t solicitari-api:1.0 ./backend
 
 # `daphne` Deployment
-docker build -f Dockerfile.prod -t solicitari-daphne:1.0 ./backend
+# docker build -f .backend/Dockerfile.prod -t solicitari-daphne:1.0 ./backend
+
+# `web` Deployment
+docker build -f .backend/Dockerfile.prod -t solicitari-web:1.0 ./frontend
 
 # `nginx` Deployment
-docker build -t solicitari-nginx:1.0 ./nginx
+docker build -f ./nginx/Dockerfile.k8s -t solicitari-nginx:1.0 ./nginx
 ```
 
 # Directories and Files Structure
@@ -64,6 +72,7 @@ docker build -t solicitari-nginx:1.0 ./nginx
 k8s
 ├── configmaps
 │   ├── api-configmap.yaml
+│   ├── db-configmap.yaml
 │   └── web-configmap.yaml
 ├── deployments
 │   ├── api-deployment.yaml
@@ -72,23 +81,33 @@ k8s
 │   ├── nginx-deployment.yaml
 │   ├── redis-deployment.yaml
 │   └── web-deployment.yaml
+├── ingress
+│   ├── cert-manager
+│   │   ├── certificate.prod.yaml
+│   │   ├── certificate.staging.yaml
+│   │   ├── letsencrypt-issuer.prod.yaml
+│   │   └── letsencrypt-issuer.staging.yaml
+│   └── ingress-service
+│       ├── ingress.dev.yaml
+│       └── ingress.prod.yaml
 ├── pvc
 │   ├── backend-media-pvc.yaml
 │   ├── backend-static-pvc.yaml
-│   ├── certbot-conf-pvc.yaml
-│   ├── certbot-www-pvc.yaml
 │   ├── postgres-pvc.yaml
 │   └── react-build-pvc.yaml
 ├── README.md
 ├── secrets
-│   └── api-secret.yaml
+│   ├── api-secret.yaml
+│   ├── daphne-secret.yaml
+│   ├── db-secret.yaml
+│   └── redis-secret.yaml
 ├── services
 │   ├── api-service.yaml
 │   ├── daphne-service.yaml
 │   ├── db-service.yaml
 │   ├── nginx-service.yaml
-│   ├── redis-service.yaml
-│   └── web-service.yaml
-└── utilities
+│   └── redis-service.yaml
+└── utils
     └── temp-pod.yaml
+
 ```
