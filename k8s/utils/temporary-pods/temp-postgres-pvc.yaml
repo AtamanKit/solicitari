@@ -1,10 +1,12 @@
+# A Temporary Pod to accomplish certain tasks with
+# `postgres-pvc`
 apiVersion: v1
 kind: Pod
 metadata:
-  name: temp-pod
+  name: temp-postgres-pvc
 spec:
   volumes:
-    - name: postgres-pvc
+    - name: postgres-volume
       persistentVolumeClaim:
         claimName: postgres-pvc
   containers:
@@ -15,4 +17,4 @@ spec:
         - "infinity"
       volumeMounts:
         - mountPath: "/mnt"
-          name: postgres-pvc
+          name: postgres-volume

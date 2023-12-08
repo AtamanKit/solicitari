@@ -1,0 +1,20 @@
+# A Temporary Pod to accomplish certain tasks with
+# `react-build-pvc`
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-react-pvc
+spec:
+  volumes:
+    - name: react-build
+      persistentVolumeClaim:
+        claimName: react-build-pvc
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "infinity"
+      volumeMounts:
+        - mountPath: "/mnt"
+          name: react-build

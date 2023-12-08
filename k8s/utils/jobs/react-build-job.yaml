@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: react-build-job
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+      - name: react-build-app
+        image: solicitari-web:1.0
+        command:
+          - "sleep"
+          - "infinity"
+        volumeMounts:
+        - name: react-build-volume
+          mountPath: /home/frontend
+      restartPolicy: Never
+      volumes:
+      - name: react-build-volume
+        persistentVolumeClaim:
+          claimName: react-build-pvc
