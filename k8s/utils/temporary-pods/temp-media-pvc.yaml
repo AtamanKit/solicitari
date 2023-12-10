@@ -1,0 +1,21 @@
+# A Temporary Pod to accomplish certain tasks with
+# `backend-media-pvc`
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-media-pvc
+spec:
+  volumes:
+    - name: backend-media-volume
+      persistentVolumeClaim:
+        claimName: backend-media-pvc
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "infinity"
+      volumesMounts:
+        - mountPath: "/mnt"
+          name: backend-media-volume

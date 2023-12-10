@@ -1,0 +1,21 @@
+# A Temporary Pod to accomplish certain tasks with
+# `backend-static-pvc`
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: temp-static-pvc
+spec:
+  volumes:
+    - name: backend-static-volume
+      persistentVolumeClaim:
+        claimName: backend-static-pvc
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      command:
+        - "sleep"
+        - "infinity"
+      volumeMounts:
+        - mountPath: "/mnt"
+          name: backend-static-volume

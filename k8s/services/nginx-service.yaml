@@ -9,11 +9,9 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetProtocol: 80
+      targetPort: 80
     # - name: https
     #   protocol: TCP
     #   port: 433
-    #   targetProtocol: 433
+    #   targetPort: 433
   type: ClusterIP
-
-
