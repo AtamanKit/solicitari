@@ -29,7 +29,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = bool(os.environ.get('DEBUG'))
 # DEBUG = True
 
-ALLOWED_HOSTS = ['api', 'localhost', 'daphne', 'solicitari.rednord.org']
+ALLOWED_HOSTS = [
+                    'api',
+                    'localhost',
+                    'daphne',
+                    'solicitari.rednord.org',
+                    'solicitari.org',
+                ]
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = [
