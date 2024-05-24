@@ -29,6 +29,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = bool(os.environ.get('DEBUG'))
 # DEBUG = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'solicitari.rednord.org',
+]
+
 ALLOWED_HOSTS = [
                     'api',
                     'localhost',
