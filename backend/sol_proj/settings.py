@@ -30,7 +30,7 @@ DEBUG = bool(os.environ.get('DEBUG'))
 # DEBUG = True
 
 CSRF_TRUSTED_ORIGINS = [
-    'solicitari.rednord.org',
+    'https://solicitari.rednord.org',
 ]
 
 ALLOWED_HOSTS = [
