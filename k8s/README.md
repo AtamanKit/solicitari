@@ -45,6 +45,9 @@ k8s
     └── temp-pod.yaml
 
 ```
+#configmaps
+In order for `k8s` to properly work `configmaps` directory must be placed from my `google drive` account, location where it should be placed: `k8s/configmaps`
+
 # Minikube
 If dealing locally or using a single VM we first should install Minikube then start Minikube:
 ```bash
