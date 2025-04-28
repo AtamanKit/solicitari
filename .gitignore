@@ -1,1 +1,3 @@
-solicitari_postgres_data_23_11_24.tar
+backend/.env/
+backend/.ssh/
+frontend/.env
