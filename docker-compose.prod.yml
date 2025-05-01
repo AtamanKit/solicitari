@@ -11,9 +11,9 @@ services:
       - ./frontend/.env/.env.prod.web
     volumes:
       - react_build:/home/frontend/
-  
+
   api:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile.prod
     restart: always
@@ -27,9 +27,10 @@ services:
       - ./backend/.env/.env.prod.api
     depends_on:
       - db
+      - redis
 
   daphne:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile.prod
     restart: always
@@ -40,7 +41,7 @@ services:
       - ./backend/.env/.env.prod.daphne
     depends_on:
       - api
-      - redis    
+      - redis
 
   db:
     image: postgres:15-alpine
