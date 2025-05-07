@@ -215,7 +215,11 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(f"redis://:${os.environ.get('CHANNELS_PASSWORD')}@redis-service:6379/0")],
+            "hosts": (
+                [("redis", 6379)]
+                if DEBUG
+                else [f"redis://:{os.environ.get('CHANNELS_PASSWORD')}@redis:6379/0"]
+            ),
         },
     },
 }
