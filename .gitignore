@@ -2,3 +2,4 @@ backend/.env/
 backend/.ssh/
 frontend/.env
 certbot/
+*.swp
