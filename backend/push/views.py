@@ -11,6 +11,9 @@ from .models import SubscriptionObject
 
 import json
 
+import logging
+logger = logging.getLogger(__name__)
+
 ################## PUSH NOTIFICATIONS SECTIONS ############
 @api_view(['GET'])
 def vapid_public_key(request):
@@ -49,9 +52,13 @@ def push_notifications(request):
                     })
 
         queryset = SubscriptionObject.objects.all()
+
         for subscription in queryset:
             if subscription.user != sender:
-                send_web_push(subscription.object, push_data)
+                try:
+                    send_web_push(subscription.object, push_data)
+                except Exception as e:
+                    logger.error(f"Failed to send to {subscription.user}: {str(e)}")
 
         return Response({'Send Push Response': 'Success'}, status=status.HTTP_201_CREATED)
     except Exception as e:

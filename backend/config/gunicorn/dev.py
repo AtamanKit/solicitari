@@ -8,7 +8,9 @@ bind = '0.0.0.0:8000'
 
 reload = True
 
-accesslog = errorlog = '/var/log/gunicorn/dev.log'
+# accesslog = errorlog = '/var/log/gunicorn/dev.log'
+accesslog = '-'
+errorlog = '-'
 
 capture_output = True
 

@@ -190,6 +190,7 @@ export default function Record(props) {
 
 
     const handleSubmit = e => { 
+	console.log("######################## test")
         e.preventDefault();
 
         setValidated(true);
@@ -268,6 +269,7 @@ export default function Record(props) {
         .then(res => res.json())
         .then(result => console.log(result))
         .catch(error => console.log(error));
+
 
         // fetch(`${apiUrl()}/push/update_push_model/`, {
         //     method: 'POST',
