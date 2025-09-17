@@ -38,6 +38,7 @@ services:
       - 8001:8001
     env_file:
       - ./backend/.env/.env.prod.api
+      - ./backend/.env/.env.prod.daphne
     depends_on:
       - api
       - redis
